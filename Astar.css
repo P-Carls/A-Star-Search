@@ -20,7 +20,6 @@ hr {
     width: 250px;
     height: 50px;
 
-    cursor: pointer;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -43,6 +42,7 @@ hr {
     height: 48px;
     border: 1px solid lightgray;
     background-color:darkgrey;
+    cursor: pointer;
 
     /* Text */
     font-size: 10px;
@@ -58,6 +58,7 @@ hr {
     height: 48px;
     border: 1px solid lightgray;
     background-color: crimson;
+    cursor: pointer;
 
     /* Text */
     font-size: 10px;
@@ -81,6 +82,7 @@ hr {
     height: 48px;
     border: 1px solid lightgray;
     background-color: blue;
+    cursor: pointer;
 
     /* Text */
     font-size: 10px;
@@ -96,7 +98,8 @@ hr {
     height: 48px; 
     border: 1px solid lightgray;
     background-color: black;
-
+    cursor: pointer;
+    
     /* Text */
     font-size: 10px;
     font-weight: bold;

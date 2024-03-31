@@ -1,10 +1,9 @@
 var optionSelected = null;
 var tileSelected = null;
-var startSet = false;
-var endSet = false;
+var startTile = null;
+var endTile = null;
 // The board will be N x N size
 let N = 10
-
 // This will be our internal board for calculating optimal route
 let internalBoard = new Array(N);
 
@@ -19,7 +18,7 @@ window.onload = function() {
 }
 
 function setBoard() {
-    // -- Set up visual board --
+    // -- Set up visual and internal board --
     for(let row = 0; row < N; row++) {
         for(let col = 0; col < N; col++) {
             //Initialize remaining rows of internal board
@@ -86,6 +85,20 @@ function selectOption() {
 function selectTile() {
     if(tileSelected != null) {
         tileSelected.classList.remove("tileSelected");
+    }else {
+        switch(optionSelected.id) {
+            case "start":
+                break;
+            case "end":
+                break;
+            case "wall":
+                break;
+            case "run":
+                break;
+            case "clear":
+                break;
+            default:
+        }
     }
     tileSelected = this;
     tileSelected.classList.add("tileSelected");
