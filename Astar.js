@@ -5,11 +5,14 @@ var endTile = null;
 // The board will be N x N size
 let N = 10
 // This will be our internal board for calculating optimal route
-let internalBoard = new Array(N);
+let internalBoard = [];
 
+// Initialize internal board
 for(let i = 0; i < N; i++) {
-    //Initialize first row of internal board
     internalBoard[i] = [];
+    for(let k = 0; k < N; k++) {
+        internalBoard[i][k] = "-";
+    }
 }
 
 window.onload = function() {
@@ -22,7 +25,7 @@ function setBoard() {
     for(let row = 0; row < N; row++) {
         for(let col = 0; col < N; col++) {
             //Initialize remaining rows of internal board
-            internalBoard[row][col] = row.toString() + "-" + col.toString();
+            internalBoard[row][col] = "-";
 
             // Create tile within board
             let tile = document.createElement("div");
@@ -32,7 +35,7 @@ function setBoard() {
             document.getElementById("board").append(tile);
         }
     }
-    console.log(board);
+    console.log(internalBoard);
 }
 
 function SetClickOptions() {
@@ -77,6 +80,10 @@ function SetClickOptions() {
 function selectOption() {
     if(optionSelected != null) {
         optionSelected.classList.remove("optionSelected");
+        if(optionSelected == this) {
+            optionSelected = null;
+            return;
+        }
     }
     optionSelected = this;
     optionSelected.classList.add("optionSelected");
@@ -85,21 +92,68 @@ function selectOption() {
 function selectTile() {
     if(tileSelected != null) {
         tileSelected.classList.remove("tileSelected");
-    }else {
-        switch(optionSelected.id) {
-            case "start":
-                break;
-            case "end":
-                break;
-            case "wall":
-                break;
-            case "run":
-                break;
-            case "clear":
-                break;
-            default:
+        if(optionSelected == null && tileSelected == this) {
+            tileSelected = null;
+            return;
         }
     }
     tileSelected = this;
-    tileSelected.classList.add("tileSelected");
+    if (optionSelected != null) {
+        let tArray = [];
+        switch(optionSelected.id) {
+            case "start":
+                if(startTile != null) 
+                    removeTileProperties(startTile);
+                removeTileProperties(this);
+                startTile = tileSelected;
+                // add visual properties
+                tileSelected.classList.add("start");
+                // add internal board properties
+                tArray = tileSelected.id.split("-");
+                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "S";
+                break;
+            case "end":
+                if(endTile != null) 
+                    removeTileProperties(endTile);
+                removeTileProperties(tileSelected);
+                endTile = tileSelected;
+                // add visual properties
+                tileSelected.classList.add("end");
+                // add internal board properties
+                tArray = tileSelected.id.split("-");
+                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "E";
+                break;
+            case "wall":
+                removeTileProperties(tileSelected);
+                // add visual properties
+                tileSelected.classList.add("wall");
+                // add internal board properties
+                tArray = tileSelected.id.split("-");
+                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "W";
+                break;
+            case "clear":
+                removeTileProperties(tileSelected);
+                break;
+            default:
+        }
+        tileSelected = null;
+        console.log(internalBoard);
+    }else {
+        tileSelected.classList.add("tileSelected");
+    }
+}
+
+function removeTileProperties(tile) {
+    // Remove all properties from visual board
+    tile.classList.remove("tileSelected");
+    tile.classList.remove("start");
+    tile.classList.remove("end");
+    tile.classList.remove("wall");
+    // Remove all properties from internal board
+    let tArray = tile.id.split("-");
+    internalBoard[parseInt(tArray[[0]])][parseInt(tArray[1])] = "-";
+}
+
+function AStarSearch() {
+    
 }

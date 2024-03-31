@@ -17,7 +17,7 @@ hr {
 }
 
 #clickOptions {
-    width: 250px;
+    width: 252px;
     height: 50px;
 
     margin: 0 auto;
@@ -69,14 +69,6 @@ hr {
     align-items: center;
 }
 
-.optionSelected {
-    opacity: .6;
-}
-
-.tileSelected {
-    background-color: darkgray;
-}
-
 .end {
     width: 48px;
     height: 48px;
@@ -107,4 +99,14 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.optionSelected {
+    opacity: .6;
+    border: 2px solid black;
+}
+
+.tileSelected {
+    opacity: .6;
+    border: 1px solid black;
 }
