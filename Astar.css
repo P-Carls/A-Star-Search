@@ -17,9 +17,10 @@ hr {
 }
 
 #clickOptions {
-    width: 150px;
+    width: 250px;
     height: 50px;
 
+    cursor: pointer;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -30,7 +31,23 @@ hr {
     width: 48px;
     height: 48px;
 
+    cursor: pointer;
     border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.runClear {
+    width: 48px;
+    height: 48px;
+    border: 1px solid lightgray;
+    background-color:darkgrey;
+
+    /* Text */
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +66,14 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.optionSelected {
+    opacity: .6;
+}
+
+.tileSelected {
+    background-color: darkgray;
 }
 
 .end {
