@@ -87,6 +87,9 @@ function selectOption() {
     }
     optionSelected = this;
     optionSelected.classList.add("optionSelected");
+    if(optionSelected.id == "run") {
+
+    }
 }
 
 function selectTile() {
@@ -106,30 +109,30 @@ function selectTile() {
                     removeTileProperties(startTile);
                 removeTileProperties(this);
                 startTile = tileSelected;
-                // add visual properties
+                // add visual board properties
                 tileSelected.classList.add("start");
                 // add internal board properties
-                tArray = tileSelected.id.split("-");
-                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "S";
+                tArray = getPosition(tileSelected)
+                internalBoard[tArray[0]][tArray[1]] = "S";
                 break;
             case "end":
                 if(endTile != null) 
                     removeTileProperties(endTile);
                 removeTileProperties(tileSelected);
                 endTile = tileSelected;
-                // add visual properties
+                // add visual board properties
                 tileSelected.classList.add("end");
                 // add internal board properties
-                tArray = tileSelected.id.split("-");
-                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "E";
+                tArray = getPosition(tileSelected)
+                internalBoard[tArray[0]][tArray[1]] = "E";
                 break;
             case "wall":
                 removeTileProperties(tileSelected);
-                // add visual properties
+                // add visual board properties
                 tileSelected.classList.add("wall");
                 // add internal board properties
-                tArray = tileSelected.id.split("-");
-                internalBoard[parseInt(tArray[0])][parseInt(tArray[1])] = "W";
+                tArray = getPosition(tileSelected)
+                internalBoard[tArray[0]][tArray[1]] = "W";
                 break;
             case "clear":
                 removeTileProperties(tileSelected);
@@ -150,10 +153,39 @@ function removeTileProperties(tile) {
     tile.classList.remove("end");
     tile.classList.remove("wall");
     // Remove all properties from internal board
-    let tArray = tile.id.split("-");
-    internalBoard[parseInt(tArray[[0]])][parseInt(tArray[1])] = "-";
+    let tArray = getPosition(tile);
+    internalBoard[tArray[0]][tArray[1]] = "-";
+}
+
+function getPosition(object) {
+    arr = object.id.split("-");
+    numArr = new Array();
+    numArr[0] = parseInt(arr[0]);
+    numArr[1] = parseInt(arr[1]);
+    return numArr;
+}
+
+class node {
+// Class to contain all relevant cell information
+    constructor() {
+        this.parent = null;
+        //id is same as the position of the cell
+        this.id = null;
+        this.f = 0;
+        this.g = 0;
+        this.h = 0;
+    }
 }
 
 function AStarSearch() {
-    
+    let openList = new Map();
+    let closedList = new Map();
+
+    startingNode = new Node();
+    startingNode.id = startTile.id;
+    openList.set(0, startingNode);
+
+    while(openList.size > 0) {
+        let p = openList.entries().next().value;
+    }
 }
